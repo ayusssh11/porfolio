@@ -386,7 +386,7 @@ const Portfolio = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 px-4 bg-black/10" data-animate>
+      <section  id="services" className="py-20 px-4 bg-black/10" data-animate>
         <div className="max-w-6xl mx-auto">
           <div className={`text-center mb-16 transition-all duration-1000 ${isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
