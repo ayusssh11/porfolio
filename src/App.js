@@ -288,65 +288,34 @@ const Portfolio = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 overflow-x-hidden relative">
-      {/* Animated background particles */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        {particlePositions.map(particle => (
-          <div
-            key={particle.id}
-            className="absolute w-1 h-1 bg-blue-400 rounded-full"
-            style={{
-              left: particle.x,
-              top: particle.y,
-              opacity: particle.opacity,
-              transform: `scale(${particle.size})`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Enhanced cursor follower */}
-      <div 
-        className="fixed w-6 h-6 pointer-events-none z-50 transition-all duration-200 ease-out opacity-0 md:opacity-100"
-        style={{
-          left: mousePosition.x - 12,
-          top: mousePosition.y - 12,
-        }}
-      >
-        <div className="w-full h-full bg-blue-600/30 rounded-full animate-ping"></div>
-        <div className="absolute inset-2 bg-blue-600 rounded-full"></div>
-      </div>
+    <div className="min-h-screen bg-white text-slate-900 overflow-x-hidden">
 
       {/* Enhanced Navigation */}
-      <nav className="fixed top-0 w-full z-40 bg-white/80 backdrop-blur-2xl border-b border-slate-200/50 shadow-lg">
+      <nav className="fixed top-0 w-full z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-18">
             <div className="flex-shrink-0 group cursor-pointer">
               <div className="relative">
-                <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+                <span className="text-2xl font-bold text-slate-900 group-hover:text-primary-600 transition-colors duration-300">
                   Ayush Chauhan
                 </span>
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 group-hover:w-full transition-all duration-500"></div>
               </div>
             </div>
             
             {/* Enhanced Desktop Menu */}
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-10">
+              <div className="ml-10 flex items-baseline space-x-1">
                 {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
                   <button
                     key={section}
                     onClick={() => scrollToSection(section)}
-                    className={`relative px-6 py-3 text-sm font-semibold transition-all duration-300 group ${
+                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg ${
                       activeSection === section 
-                        ? 'text-blue-600 bg-blue-50 rounded-lg' 
-                        : 'text-slate-700 hover:text-blue-600'
+                        ? 'text-primary-600 bg-primary-50' 
+                        : 'text-slate-700 hover:text-primary-600 hover:bg-slate-50'
                     }`}
                   >
                     {section.charAt(0).toUpperCase() + section.slice(1)}
-                    <span className={`absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 ${
-                      activeSection === section ? 'w-8' : 'group-hover:w-8'
-                    }`}></span>
                   </button>
                 ))}
               </div>
@@ -369,14 +338,13 @@ const Portfolio = () => {
         </div>
 
         {/* Enhanced Mobile Menu */}
-        <div className={`md:hidden bg-white/95 backdrop-blur-xl transition-all duration-500 ${isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden border-b border-slate-200`}>
-          <div className="px-6 pt-4 pb-6 space-y-2">
-            {['home', 'about', 'skills', 'projects', 'contact'].map((section, index) => (
+        <div className={`md:hidden bg-white transition-all duration-300 ${isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden border-b border-slate-200`}>
+          <div className="px-6 pt-4 pb-6 space-y-1">
+            {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className="block w-full text-left px-4 py-3 text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-300 transform hover:scale-105"
-                style={{ transitionDelay: `${index * 100}ms` }}
+                className="block w-full text-left px-4 py-2.5 text-sm font-medium text-slate-700 hover:text-primary-600 hover:bg-slate-50 rounded-lg transition-all duration-200"
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
               </button>
@@ -386,96 +354,79 @@ const Portfolio = () => {
       </nav>
 
       {/* Enhanced Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        {/* Animated gradient background */}
-        <div 
-          className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 transition-all duration-1000"
-          style={{
-            transform: `translateY(${scrollY * 0.5}px)`,
-          }}
-        >
-          {/* Geometric shapes */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow"></div>
-          <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-indigo-200/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-violet-200/15 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow" style={{ animationDelay: '4s' }}></div>
-        </div>
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50">
+        {/* Subtle gradient background */}
+        <div className="absolute inset-0 bg-gradient-radial from-primary-50/30 via-transparent to-transparent"></div>
 
         <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
           <div className={`transition-all duration-1500 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
             {/* Status badge */}
-            <div className="mb-10 animate-fade-in-up">
-              <span className="inline-flex items-center px-6 py-3 bg-white/90 backdrop-blur-lg rounded-full text-sm font-semibold text-slate-700 border border-slate-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                <div className="w-3 h-3 bg-green-500 rounded-full mr-3 animate-pulse"></div>
-                <Sparkles className="w-4 h-4 mr-2 text-blue-600" />
+            <div className="mb-8 animate-fade-in-up">
+              <span className="inline-flex items-center px-5 py-2 bg-white rounded-full text-sm font-medium text-slate-700 border border-slate-200 shadow-subtle hover:shadow-card transition-all duration-300">
+                <div className="w-2 h-2 bg-green-500 rounded-full mr-2.5"></div>
                 Available for new opportunities
               </span>
             </div>
             
             {/* Main heading with enhanced animation */}
-            <h1 className="text-6xl md:text-8xl font-black mb-8 text-slate-900 leading-none">
-              <span className="inline-block animate-slide-in-left">Ayush</span>{' '}
-              <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 animate-gradient-x animate-slide-in-right">
-                Chauhan
-              </span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-slate-900 leading-tight">
+              Hi, I'm <span className="text-primary-600">Ayush Chauhan</span>
             </h1>
             
             {/* Enhanced typewriter effect */}
-            <div className="text-2xl md:text-3xl mb-10 text-slate-700 h-12 flex items-center justify-center">
-              <span className="mr-3">I'm a </span>
+            <div className="text-xl md:text-2xl mb-8 text-slate-600 h-10 flex items-center justify-center">
+              <span className="mr-2">I'm a </span>
               <div className="relative">
-                <span className="text-blue-600 font-bold">
+                <span className="text-primary-600 font-semibold">
                   {typedText}
                 </span>
-                <span className="absolute animate-pulse text-blue-400 ml-1">|</span>
+                <span className="absolute animate-pulse text-primary-400 ml-1">|</span>
               </div>
             </div>
             
             {/* Enhanced description */}
-            <p className="text-xl mb-14 text-slate-600 max-w-4xl mx-auto leading-relaxed animate-fade-in-up delay-500">
-              Crafting exceptional digital experiences through innovative technology solutions. 
-              I specialize in transforming complex challenges into elegant, scalable applications 
-              that drive <span className="text-blue-600 font-semibold">measurable business results</span>.
+            <p className="text-lg mb-12 text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              I build exceptional digital experiences through clean code and thoughtful design. 
+              Specializing in full-stack development with a focus on creating scalable, 
+              user-centric applications.
             </p>
             
             {/* Enhanced CTA buttons */}
-            <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-16 animate-fade-in-up delay-700">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <button
                 onClick={() => scrollToSection('projects')}
-                className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-bold text-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 overflow-hidden"
+                className="group px-8 py-3.5 bg-primary-600 text-white rounded-lg font-semibold text-base hover:bg-primary-700 transition-all duration-200 shadow-card hover:shadow-card-hover"
               >
-                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                <span className="relative flex items-center gap-3">
-                  <Eye size={24} />
+                <span className="flex items-center gap-2">
                   View My Work
-                  <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform duration-300" />
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
                 </span>
               </button>
               
               <button
                 onClick={() => scrollToSection('contact')}
-                className="px-10 py-5 border-3 border-blue-600 text-blue-600 rounded-2xl font-bold text-lg hover:bg-blue-600 hover:text-white transition-all duration-300 hover:shadow-xl hover:scale-105 bg-white/50 backdrop-blur-sm"
+                className="px-8 py-3.5 border-2 border-slate-300 text-slate-700 rounded-lg font-semibold text-base hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50 transition-all duration-200 bg-white"
               >
-                <span className="flex items-center gap-3">
-                  <MessageSquare size={24} />
+                <span className="flex items-center gap-2">
+                  <MessageSquare size={20} />
                   Get In Touch
                 </span>
               </button>
             </div>
 
             {/* Enhanced Social Links */}
-            <div className="flex justify-center gap-8 mb-16 animate-fade-in-up delay-1000">
+            <div className="flex justify-center gap-4 mb-12">
               {[
                 { href: "https://github.com/ayusssh11", icon: Github, label: "GitHub" },
                 { href: "https://www.linkedin.com/in/ayush-chauhan-95155632a/", icon: Linkedin, label: "LinkedIn" },
                 { href: "mailto:ayushch435@gmail.com", icon: Mail, label: "Email" }
-              ].map((social, index) => (
+              ].map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
-                  className="group p-4 bg-white/80 backdrop-blur-lg rounded-2xl hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-125 shadow-xl hover:shadow-2xl"
-                  style={{ animationDelay: `${index * 200}ms` }}
+                  className="p-3 bg-white rounded-lg hover:bg-slate-50 hover:text-primary-600 transition-all duration-200 shadow-subtle hover:shadow-card border border-slate-200"
                 >
-                  <social.icon size={28} />
+                  <social.icon size={22} />
                 </a>
               ))}
             </div>
@@ -483,61 +434,55 @@ const Portfolio = () => {
         </div>
         
         {/* Enhanced scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
-          <div className="flex flex-col items-center text-slate-600">
-            <div className="w-8 h-14 border-2 border-slate-400 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-slate-600 rounded-full mt-2 animate-scroll-indicator"></div>
-            </div>
-            <span className="text-sm font-medium mt-2">Scroll to explore</span>
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+          <div className="flex flex-col items-center text-slate-400">
+            <ChevronDown size={24} className="animate-bounce" />
           </div>
         </div>
       </section>
 
       {/* Enhanced About Section with Animated Character */}
-      <section id="about" className="py-24 px-6 bg-white relative overflow-hidden" data-animate>
-        {/* Background decoration */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full opacity-50 blur-3xl"></div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className={`text-center mb-20 transition-all duration-1000 ${isVisible.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-5xl md:text-6xl font-black mb-8 text-slate-900">
-              About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">Me</span>
+      <section id="about" className="py-20 px-6 bg-white" data-animate>
+        <div className="max-w-6xl mx-auto">
+          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">
+              About Me
             </h2>
-            <div className="w-32 h-2 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
+            <div className="w-20 h-1 bg-primary-600 mx-auto"></div>
           </div>
           
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className={`space-y-8 transition-all duration-1000 delay-200 ${isVisible.about ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <div className="prose prose-lg text-slate-700">
-                <p className="text-xl leading-relaxed mb-6">
-                  As a dedicated full-stack developer with <span className="text-blue-600 font-bold bg-blue-50 px-2 py-1 rounded">2+ years</span> of professional experience, 
-                  I specialize in creating robust, scalable web applications that deliver exceptional user experiences and drive business growth.
+            <div className={`space-y-6 transition-all duration-1000 delay-200 ${isVisible.about ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+              <div className="prose prose-lg text-slate-600">
+                <p className="text-lg leading-relaxed mb-5">
+                  I'm a full-stack developer with <span className="text-primary-600 font-semibold">2+ years</span> of professional experience, 
+                  specializing in creating robust, scalable web applications that deliver exceptional user experiences.
                 </p>
-                <p className="text-lg leading-relaxed mb-6">
+                <p className="text-base leading-relaxed mb-5">
                   My expertise spans modern JavaScript frameworks, cloud architecture, and database optimization. I'm passionate about 
-                  writing clean, maintainable code and implementing best practices that ensure long-term project success.
+                  writing clean, maintainable code and implementing best practices.
                 </p>
-                <p className="text-lg leading-relaxed mb-8">
-                  Beyond coding, I actively contribute to the developer community through knowledge sharing, mentoring, and staying 
+                <p className="text-base leading-relaxed mb-6">
+                  I actively contribute to the developer community through knowledge sharing and staying 
                   current with emerging technologies and industry trends.
                 </p>
               </div>
               
               {/* Enhanced achievements grid */}
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-4">
                 {achievements.map((achievement, index) => (
                   <div 
                     key={achievement.label} 
-                    className={`text-center p-8 bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl border border-slate-200 hover:shadow-2xl transition-all duration-500 hover:scale-110 group transform ${isVisible.about ? 'animate-fade-in-up' : 'opacity-0'}`}
+                    className={`text-center p-6 bg-slate-50 rounded-xl border border-slate-200 hover:shadow-card transition-all duration-300 hover:border-primary-200 group transform ${isVisible.about ? 'animate-fade-in-up' : 'opacity-0'}`}
                     style={{ animationDelay: `${index * 200}ms` }}
                   >
-                    <div className="flex justify-center mb-4">
-                      <div className="p-4 bg-gradient-to-br from-blue-600 to-indigo-600 text-white rounded-2xl group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                        <achievement.icon size={32} />
+                    <div className="flex justify-center mb-3">
+                      <div className="p-3 bg-primary-600 text-white rounded-lg group-hover:bg-primary-700 transition-colors duration-300">
+                        <achievement.icon size={24} />
                       </div>
                     </div>
-                    <div className="text-4xl font-black text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">{achievement.number}</div>
-                    <div className="text-sm text-slate-600 font-semibold uppercase tracking-wide">{achievement.label}</div>
+                    <div className="text-3xl font-bold text-slate-900 mb-2">{achievement.number}</div>
+                    <div className="text-xs text-slate-600 font-medium">{achievement.label}</div>
                   </div>
                 ))}
               </div>
@@ -551,88 +496,49 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Enhanced Services Section */}
-      <section id="services" className="py-24 px-6 bg-gradient-to-br from-slate-50 to-slate-100 relative overflow-hidden" data-animate>
-        {/* Background decoration */}
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full opacity-20 blur-3xl"></div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className={`text-center mb-20 transition-all duration-1000 ${isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-5xl md:text-6xl font-black mb-8 text-slate-900">
-              What I <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">Do</span>
-            </h2>
-            <div className="w-32 h-2 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <div key={service.title} className={`group transition-all duration-1000 delay-${index * 150} ${isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <div className="bg-white/80 backdrop-blur-lg p-10 rounded-3xl border border-slate-200/50 hover:shadow-2xl transition-all duration-500 hover:scale-105 h-full group-hover:bg-white">
-                  <div className={`p-5 rounded-2xl bg-gradient-to-br ${service.color} mb-8 w-fit group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-lg`}>
-                    <service.icon size={36} className="text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-6 group-hover:text-blue-600 transition-colors duration-300">{service.title}</h3>
-                  <p className="text-slate-600 leading-relaxed text-lg">{service.description}</p>
-                  
-                  {/* Hover effect decoration */}
-                  <div className="absolute bottom-4 right-4 w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-0 group-hover:scale-100"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Enhanced Skills Section */}
-      <section id="skills" className="py-24 px-6 bg-white relative overflow-hidden" data-animate>
-        {/* Background decoration */}
-        <div className="absolute top-1/2 left-0 w-96 h-96 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full opacity-30 blur-3xl"></div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className={`text-center mb-20 transition-all duration-1000 ${isVisible.skills ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-5xl md:text-6xl font-black mb-8 text-slate-900">
-              Skills & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">Technologies</span>
+      <section id="skills" className="py-20 px-6 bg-slate-50" data-animate>
+        <div className="max-w-6xl mx-auto">
+          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible.skills ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">
+              Skills & Technologies
             </h2>
-            <div className="w-32 h-2 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
-            <p className="text-xl text-slate-600 mt-8 max-w-3xl mx-auto leading-relaxed">
+            <div className="w-20 h-1 bg-primary-600 mx-auto"></div>
+            <p className="text-base text-slate-600 mt-6 max-w-2xl mx-auto">
               My technical expertise spans across modern web technologies, ensuring robust and scalable solutions.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {skills.map((skill, index) => (
               <div key={skill.name} className={`group transition-all duration-1000 delay-${index * 150} ${isVisible.skills ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <div className="bg-gradient-to-br from-slate-50 to-slate-100 p-10 rounded-3xl border border-slate-200 hover:shadow-2xl transition-all duration-500 hover:scale-105 h-full relative overflow-hidden">
-                  {/* Background glow effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-3xl`}></div>
-                  
-                  <div className="flex items-center mb-8 relative z-10">
-                    <div className={`p-4 rounded-2xl bg-gradient-to-br ${skill.color} mr-6 group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-lg`}>
-                      <skill.icon size={32} className="text-white" />
+                <div className="bg-white p-6 rounded-xl border border-slate-200 hover:shadow-card transition-all duration-300 hover:border-primary-200 h-full">
+                  <div className="flex items-center mb-5">
+                    <div className={`p-3 rounded-lg bg-gradient-to-br ${skill.color} mr-4`}>
+                      <skill.icon size={24} className="text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">{skill.name}</h3>
-                      <p className="text-slate-600 text-sm mt-2">{skill.description}</p>
+                      <h3 className="text-lg font-semibold text-slate-900">{skill.name}</h3>
                     </div>
                   </div>
                   
-                  <div className="mb-4 relative z-10">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-sm font-bold text-slate-700 uppercase tracking-wide">Proficiency</span>
-                      <span className="text-lg font-black text-blue-600 bg-blue-50 px-3 py-1 rounded-full">{skill.level}%</span>
+                  <p className="text-sm text-slate-600 mb-4 leading-relaxed">{skill.description}</p>
+                  
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-xs font-medium text-slate-600">Proficiency</span>
+                      <span className="text-sm font-semibold text-primary-600">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-slate-300 rounded-full h-3 overflow-hidden shadow-inner">
+                    <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
                       <div 
-                        className={`h-3 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-2000 ease-out relative overflow-hidden`}
+                        className={`h-2 rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
                         style={{ 
                           width: isVisible.skills ? `${skill.level}%` : '0%',
-                          transitionDelay: `${index * 300}ms`
+                          transitionDelay: `${index * 150}ms`
                         }}
-                      >
-                        {/* Shimmer effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 animate-shimmer"></div>
-                      </div>
+                      />
                     </div>
                   </div>
                 </div>
@@ -643,65 +549,61 @@ const Portfolio = () => {
       </section>
 
       {/* Enhanced Projects Section */}
-      <section id="projects" className="py-24 px-6 bg-gradient-to-br from-slate-50 to-slate-100 relative overflow-hidden" data-animate>
-        {/* Background decorations */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-100 to-pink-100 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full opacity-20 blur-3xl"></div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className={`text-center mb-20 transition-all duration-1000 ${isVisible.projects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-5xl md:text-6xl font-black mb-8 text-slate-900">
-              Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">Projects</span>
+      <section id="projects" className="py-20 px-6 bg-white" data-animate>
+        <div className="max-w-6xl mx-auto">
+          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible.projects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">
+              Featured Projects
             </h2>
-            <div className="w-32 h-2 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
-            <p className="text-xl text-slate-600 mt-8 max-w-4xl mx-auto leading-relaxed">
-              Discover a selection of my recent projects that demonstrate expertise in modern web technologies and innovative problem-solving approaches.
+            <div className="w-20 h-1 bg-primary-600 mx-auto"></div>
+            <p className="text-base text-slate-600 mt-6 max-w-2xl mx-auto">
+              A selection of my recent projects demonstrating expertise in modern web technologies.
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <div key={project.title} className={`group transition-all duration-1000 delay-${index * 200} ${isVisible.projects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                <div className="bg-white/80 backdrop-blur-lg rounded-3xl overflow-hidden border border-slate-200/50 hover:shadow-2xl transition-all duration-500 hover:scale-105 h-full flex flex-col">
+                <div className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-card-hover transition-all duration-300 h-full flex flex-col">
                   <div className="relative overflow-hidden">
                     <img 
                       src={project.image} 
                       alt={project.title}
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     
                     {/* Project category badge */}
-                    <div className="absolute top-6 left-6 transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="px-4 py-2 bg-white/95 backdrop-blur-sm text-slate-800 text-sm font-bold rounded-full shadow-lg">
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-white text-slate-800 text-xs font-semibold rounded-full shadow-card">
                         {project.category}
                       </span>
                     </div>
                     
                     {/* Action buttons overlay */}
-                    <div className="absolute bottom-6 right-6 flex gap-3 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                      <a href={project.demo} className="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-300 shadow-lg hover:shadow-xl">
-                        <ExternalLink size={20} />
+                    <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <a href={project.demo} className="p-2.5 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors duration-200 shadow-card">
+                        <ExternalLink size={18} />
                       </a>
-                      <a href={project.github} className="p-3 bg-slate-800 text-white rounded-full hover:bg-slate-900 transition-colors duration-300 shadow-lg hover:shadow-xl">
-                        <Github size={20} />
+                      <a href={project.github} className="p-2.5 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors duration-200 shadow-card">
+                        <Github size={18} />
                       </a>
                     </div>
                   </div>
                   
-                  <div className="p-8 flex-1 flex flex-col">
-                    <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                  <div className="p-6 flex-1 flex flex-col">
+                    <h3 className="text-xl font-semibold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors duration-300">
                       {project.title}
                     </h3>
-                    <p className="text-slate-600 mb-6 flex-1 leading-relaxed text-lg">{project.description}</p>
+                    <p className="text-sm text-slate-600 mb-4 flex-1 leading-relaxed">{project.description}</p>
                     
                     {/* Key features with enhanced styling */}
-                    <div className="mb-6">
-                      <h4 className="text-sm font-bold text-blue-600 mb-4 uppercase tracking-wide">Key Features:</h4>
-                      <div className="grid grid-cols-2 gap-3">
+                    <div className="mb-4">
+                      <h4 className="text-xs font-semibold text-slate-700 mb-3 uppercase tracking-wide">Key Features:</h4>
+                      <div className="grid grid-cols-2 gap-2">
                         {project.features.map((feature, i) => (
-                          <div key={i} className="flex items-center gap-3 text-sm text-slate-700 bg-slate-50 rounded-lg p-3">
-                            <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+                          <div key={i} className="flex items-start gap-2 text-xs text-slate-700">
+                            <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-1.5 flex-shrink-0"></div>
                             {feature}
                           </div>
                         ))}
@@ -709,12 +611,11 @@ const Portfolio = () => {
                     </div>
                     
                     {/* Tech stack with enhanced badges */}
-                    <div className="flex flex-wrap gap-3 mb-8">
-                      {project.tech.map((tech, i) => (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.map((tech) => (
                         <span 
                           key={tech} 
-                          className="px-4 py-2 bg-gradient-to-r from-slate-100 to-slate-200 text-slate-800 rounded-full text-sm font-semibold border border-slate-300 hover:scale-110 transition-transform duration-300 shadow-sm"
-                          style={{ animationDelay: `${i * 100}ms` }}
+                          className="px-3 py-1 bg-slate-100 text-slate-700 rounded-md text-xs font-medium border border-slate-200 hover:border-primary-300 hover:bg-primary-50 transition-all duration-200"
                         >
                           {tech}
                         </span>
@@ -722,19 +623,19 @@ const Portfolio = () => {
                     </div>
                     
                     {/* Action links */}
-                    <div className="flex gap-6 pt-6 border-t border-slate-200">
+                    <div className="flex gap-4 pt-4 border-t border-slate-200">
                       <a 
                         href={project.github}
-                        className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-all duration-300 font-semibold hover:scale-105"
+                        className="flex items-center gap-2 text-sm text-slate-700 hover:text-primary-600 transition-colors duration-200 font-medium"
                       >
-                        <Github size={20} />
-                        Source Code
+                        <Github size={16} />
+                        Source
                       </a>
                       <a 
                         href={project.demo}
-                        className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-all duration-300 font-semibold hover:scale-105"
+                        className="flex items-center gap-2 text-sm text-slate-700 hover:text-primary-600 transition-colors duration-200 font-medium"
                       >
-                        <ExternalLink size={20} />
+                        <ExternalLink size={16} />
                         Live Demo
                       </a>
                     </div>
@@ -747,44 +648,41 @@ const Portfolio = () => {
       </section>
 
       {/* Enhanced Contact Section */}
-      <section id="contact" className="py-24 px-6 bg-white relative overflow-hidden" data-animate>
-        {/* Background decorations */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full opacity-30 blur-3xl"></div>
-        
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className={`text-center mb-20 transition-all duration-1000 ${isVisible.contact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-5xl md:text-6xl font-black mb-8 text-slate-900">
-              Let's Work <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">Together</span>
+      <section id="contact" className="py-20 px-6 bg-slate-50" data-animate>
+        <div className="max-w-6xl mx-auto">
+          <div className={`text-center mb-16 transition-all duration-1000 ${isVisible.contact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">
+              Let's Work Together
             </h2>
-            <div className="w-32 h-2 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
-            <p className="text-xl text-slate-600 mt-8 max-w-3xl mx-auto leading-relaxed">
-              Ready to transform your ideas into exceptional digital solutions? Let's discuss how we can collaborate to achieve your goals.
+            <div className="w-20 h-1 bg-primary-600 mx-auto"></div>
+            <p className="text-base text-slate-600 mt-6 max-w-2xl mx-auto">
+              Ready to bring your ideas to life? Let's discuss how we can collaborate.
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-16">
-            <div className={`space-y-10 transition-all duration-1000 delay-200 ${isVisible.contact ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <div className="text-center lg:text-left">
-                <h3 className="text-3xl font-bold text-slate-900 mb-6">Get in Touch</h3>
-                <p className="text-slate-600 text-lg mb-10 leading-relaxed">
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div className={`space-y-6 transition-all duration-1000 delay-200 ${isVisible.contact ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+              <div>
+                <h3 className="text-2xl font-semibold text-slate-900 mb-4">Get in Touch</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">
                   I'm currently available for freelance projects and full-time opportunities. 
                   Let's create something exceptional together.
                 </p>
               </div>
               
-              <div className="space-y-8">
+              <div className="space-y-4">
                 {[
-                  { icon: Mail, title: "Email", value: "ayushch435@gmail.com", href: "mailto:ayushch435@gmail.com", color: "from-blue-600 to-indigo-600" },
-                  { icon: Linkedin, title: "LinkedIn", value: "Connect professionally", href: "https://www.linkedin.com/in/ayush-chauhan-95155632a/", color: "from-indigo-600 to-purple-600" },
-                  { icon: Github, title: "GitHub", value: "View my repositories", href: "https://github.com/ayusssh11", color: "from-purple-600 to-pink-600" }
-                ].map((contact, index) => (
-                  <div key={contact.title} className={`flex items-center gap-6 p-8 bg-gradient-to-r from-slate-50 to-slate-100 rounded-2xl border border-slate-200 hover:shadow-2xl transition-all duration-500 hover:scale-105 group animate-fade-in-up`} style={{ animationDelay: `${index * 200}ms` }}>
-                    <div className={`p-5 bg-gradient-to-r ${contact.color} text-white rounded-2xl group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-lg`}>
-                      <contact.icon size={32} />
+                  { icon: Mail, title: "Email", value: "ayushch435@gmail.com", href: "mailto:ayushch435@gmail.com" },
+                  { icon: Linkedin, title: "LinkedIn", value: "Connect professionally", href: "https://www.linkedin.com/in/ayush-chauhan-95155632a/" },
+                  { icon: Github, title: "GitHub", value: "View my repositories", href: "https://github.com/ayusssh11" }
+                ].map((contact) => (
+                  <div key={contact.title} className="flex items-center gap-4 p-5 bg-white rounded-xl border border-slate-200 hover:shadow-card transition-all duration-300 hover:border-primary-200 group">
+                    <div className="p-3 bg-primary-600 text-white rounded-lg group-hover:bg-primary-700 transition-colors duration-300">
+                      <contact.icon size={20} />
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">{contact.title}</h4>
-                      <a href={contact.href} className="text-slate-600 hover:text-blue-600 transition-colors duration-300 text-lg">
+                      <h4 className="text-base font-semibold text-slate-900 mb-1">{contact.title}</h4>
+                      <a href={contact.href} className="text-sm text-slate-600 hover:text-primary-600 transition-colors duration-300">
                         {contact.value}
                       </a>
                     </div>
@@ -793,21 +691,20 @@ const Portfolio = () => {
               </div>
 
               {/* Enhanced availability status */}
-              <div className="mt-12 p-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl border-2 border-blue-200/50">
-                <h4 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                  <div className="w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
+              <div className="mt-6 p-5 bg-primary-50 rounded-xl border border-primary-200">
+                <h4 className="text-base font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
                   Availability Status
                 </h4>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {[
-                    { status: "Available for new projects", color: "green", icon: CheckCircle },
-                    { status: "Response time: Within 24 hours", color: "blue", icon: Clock },
-                    { status: "Open to remote collaboration", color: "indigo", icon: Globe }
-                  ].map((item, index) => (
-                    <div key={item.status} className="flex items-center gap-4 text-slate-700">
-                      <div className={`w-3 h-3 bg-${item.color}-500 rounded-full animate-pulse`} style={{ animationDelay: `${index * 300}ms` }}></div>
-                      <item.icon size={18} className={`text-${item.color}-600`} />
-                      <span className="font-medium">{item.status}</span>
+                    { status: "Available for new projects", icon: CheckCircle },
+                    { status: "Response time: Within 24 hours", icon: Clock },
+                    { status: "Open to remote collaboration", icon: Globe }
+                  ].map((item) => (
+                    <div key={item.status} className="flex items-center gap-3 text-sm text-slate-700">
+                      <item.icon size={16} className="text-primary-600" />
+                      <span>{item.status}</span>
                     </div>
                   ))}
                 </div>
@@ -816,34 +713,34 @@ const Portfolio = () => {
             
             {/* Enhanced contact form */}
             <div className={`transition-all duration-1000 delay-400 ${isVisible.contact ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <div className="bg-gradient-to-br from-slate-50 to-slate-100 p-10 rounded-3xl border border-slate-200 hover:shadow-2xl transition-all duration-500 backdrop-blur-lg">
-                <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
-                  <MessageSquare className="text-blue-600" size={28} />
+              <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-card">
+                <h3 className="text-xl font-semibold text-slate-900 mb-6 flex items-center gap-2">
+                  <MessageSquare className="text-primary-600" size={22} />
                   Send a Message
                 </h3>
-                <div className="space-y-8">
-                  <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-5">
+                  <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-wide">Full Name</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
                       <input
                         type="text"
-                        placeholder="Enter your full name"
-                        className="w-full px-6 py-4 bg-white border-2 border-slate-300 rounded-xl text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-300 font-medium"
+                        placeholder="Your name"
+                        className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-all duration-200"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-wide">Email Address</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
                       <input
                         type="email"
-                        placeholder="Enter your email"
-                        className="w-full px-6 py-4 bg-white border-2 border-slate-300 rounded-xl text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-300 font-medium"
+                        placeholder="your@email.com"
+                        className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-all duration-200"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-wide">Project Type</label>
-                    <select className="w-full px-6 py-4 bg-white border-2 border-slate-300 rounded-xl text-slate-900 focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-300 font-medium">
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Project Type</label>
+                    <select className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-all duration-200">
                       <option>Web Application Development</option>
                       <option>Mobile Application</option>
                       <option>E-commerce Solution</option>
@@ -854,23 +751,21 @@ const Portfolio = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-bold text-slate-700 mb-3 uppercase tracking-wide">Project Details</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">Project Details</label>
                     <textarea
-                      placeholder="Please describe your project requirements, timeline, and objectives..."
+                      placeholder="Describe your project..."
                       rows={5}
-                      className="w-full px-6 py-4 bg-white border-2 border-slate-300 rounded-xl text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-300 resize-none font-medium"
+                      className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 transition-all duration-200 resize-none"
                     ></textarea>
                   </div>
                   
                   <button
                     onClick={() => alert('Thank you for your interest! I\'ll respond to your message within 24 hours.')}
-                    className="w-full px-8 py-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold text-lg hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl relative overflow-hidden"
+                    className="w-full px-6 py-3 bg-primary-600 text-white rounded-lg font-semibold text-base hover:bg-primary-700 transition-all duration-200 shadow-card hover:shadow-card-hover"
                   >
-                    <div className="absolute inset-0 bg-white opacity-0 hover:opacity-10 transition-opacity duration-300"></div>
-                    <span className="relative flex items-center justify-center gap-3">
-                      <Sparkles size={24} />
+                    <span className="flex items-center justify-center gap-2">
                       Send Message
-                      <ArrowRight size={24} />
+                      <ArrowRight size={18} />
                     </span>
                   </button>
                 </div>
@@ -881,20 +776,17 @@ const Portfolio = () => {
       </section>
 
       {/* Enhanced Footer */}
-      <footer className="py-16 px-6 border-t border-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full opacity-20 blur-3xl"></div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-4 gap-12 mb-12">
+      <footer className="py-12 px-6 border-t border-slate-200 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-4 gap-10 mb-10">
             <div className="lg:col-span-2">
-              <h3 className="text-3xl font-black text-slate-900 mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <h3 className="text-xl font-bold text-slate-900 mb-4">
                 Ayush Chauhan
               </h3>
-              <p className="text-slate-600 mb-8 text-lg leading-relaxed max-w-md">
-                Full Stack Developer specializing in creating innovative digital solutions that drive business success and exceptional user experiences.
+              <p className="text-sm text-slate-600 mb-6 leading-relaxed max-w-md">
+                Full Stack Developer specializing in creating innovative digital solutions that drive business success.
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-3">
                 {[
                   { href: "https://github.com/ayusssh11", icon: Github },
                   { href: "https://www.linkedin.com/in/ayush-chauhan-95155632a/", icon: Linkedin },
@@ -903,24 +795,23 @@ const Portfolio = () => {
                   <a 
                     key={index} 
                     href={social.href} 
-                    className="p-4 bg-white border-2 border-slate-200 rounded-xl hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-300 hover:scale-125 hover:rotate-12 shadow-lg hover:shadow-xl"
+                    className="p-3 bg-slate-50 border border-slate-200 rounded-lg hover:bg-primary-50 hover:text-primary-600 hover:border-primary-200 transition-all duration-200"
                   >
-                    <social.icon size={24} />
+                    <social.icon size={20} />
                   </a>
                 ))}
               </div>
             </div>
             
             <div>
-              <h4 className="text-xl font-bold text-slate-900 mb-6">Quick Navigation</h4>
-              <ul className="space-y-4">
+              <h4 className="text-base font-semibold text-slate-900 mb-4">Quick Links</h4>
+              <ul className="space-y-2.5">
                 {['About', 'Skills', 'Projects', 'Contact'].map((item) => (
                   <li key={item}>
                     <button
                       onClick={() => scrollToSection(item.toLowerCase())}
-                      className="text-slate-600 hover:text-blue-600 transition-all duration-300 hover:translate-x-2 font-medium flex items-center gap-2"
+                      className="text-sm text-slate-600 hover:text-primary-600 transition-colors duration-200"
                     >
-                      <ArrowRight size={16} className="opacity-0 hover:opacity-100 transition-opacity duration-300" />
                       {item}
                     </button>
                   </li>
@@ -929,45 +820,24 @@ const Portfolio = () => {
             </div>
             
             <div>
-              <h4 className="text-xl font-bold text-slate-900 mb-6">Services</h4>
-              <ul className="space-y-4 text-slate-600">
-                <li className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-300">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                  Full Stack Development
-                </li>
-                <li className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-300">
-                  <div className="w-2 h-2 bg-indigo-600 rounded-full"></div>
-                  React Applications
-                </li>
-                <li className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-300">
-                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                  API Development
-                </li>
-                <li className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-300">
-                  <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                  Database Design
-                </li>
-                <li className="flex items-center gap-2 hover:text-blue-600 transition-colors duration-300">
-                  <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
-                  Cloud Solutions
-                </li>
+              <h4 className="text-base font-semibold text-slate-900 mb-4">Services</h4>
+              <ul className="space-y-2.5 text-sm text-slate-600">
+                <li>Full Stack Development</li>
+                <li>React Applications</li>
+                <li>API Development</li>
+                <li>Database Design</li>
+                <li>Cloud Solutions</li>
               </ul>
             </div>
           </div>
           
-          <div className="border-t-2 border-slate-200 pt-8 flex flex-col lg:flex-row justify-between items-center">
-            <p className="text-slate-500 text-lg font-medium">
+          <div className="border-t border-slate-200 pt-6 flex flex-col sm:flex-row justify-between items-center text-sm text-slate-600">
+            <p>
               © 2025 Ayush Chauhan. All rights reserved.
             </p>
-            <div className="flex items-center gap-4 mt-6 lg:mt-0">
-              <p className="text-slate-500 text-lg font-medium">
-                Crafted with
-              </p>
-              <div className="flex items-center gap-2">
-                <Heart size={20} className="text-red-500 animate-pulse" />
-                <span className="text-slate-500 font-medium">React & Tailwind CSS</span>
-              </div>
-            </div>
+            <p className="mt-3 sm:mt-0">
+              Built with React & Tailwind CSS
+            </p>
           </div>
         </div>
       </footer>
@@ -975,9 +845,9 @@ const Portfolio = () => {
       {/* Enhanced scroll to top button */}
       <button
         onClick={() => scrollToSection('home')}
-        className="fixed bottom-8 right-8 p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl shadow-2xl hover:shadow-blue-500/25 transform hover:scale-125 transition-all duration-300 z-50 group"
+        className="fixed bottom-6 right-6 p-3 bg-primary-600 text-white rounded-lg shadow-card hover:shadow-card-hover hover:bg-primary-700 transition-all duration-200 z-50"
       >
-        <ChevronDown size={24} className="rotate-180 group-hover:animate-bounce" />
+        <ChevronDown size={20} className="rotate-180" />
       </button>
 
       {/* Custom styles for additional animations */}
