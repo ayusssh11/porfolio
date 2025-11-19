@@ -214,7 +214,7 @@ const Portfolio = () => {
     {
       title: 'Morning City News Portal',
       description: 'A comprehensive digital news platform featuring real-time content management, advanced categorization, and responsive design optimized for performance and user engagement.',
-      image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&h=400&fit=crop&auto=format',
+      image: '/Screenshot 2025-11-19 at 12.11.06 PM.png',
       tech: ['PHP', 'Bootstrap', 'MySQL', 'JavaScript', 'AJAX'],
       github: '#',
       demo: 'https://morningcity.in/',
@@ -224,7 +224,7 @@ const Portfolio = () => {
     {
       title: 'TakePDF Converter',
       description: 'An intelligent document conversion platform supporting multiple file formats with advanced processing capabilities, secure file handling, and batch conversion features.',
-      image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=400&fit=crop&auto=format',
+      image: '/Screenshot 2025-11-19 at 12.12.44 PM.png',
       tech: ['Python', 'Flask', 'Bootstrap', 'MySQL', 'JavaScript'],
       github: '#',
       demo: 'https://takepdf.com/',
@@ -234,7 +234,7 @@ const Portfolio = () => {
     {
       title: 'Hanumanta Auto Portfolio',
       description: 'A sophisticated business portfolio showcasing automotive services with interactive galleries, streamlined service booking system, and integrated customer testimonials.',
-      image: 'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=400&fit=crop&auto=format',
+      image: '/Screenshot 2025-11-19 at 12.12.59 PM.png',
       tech: ['Bootstrap', 'MySQL', 'Tailwind', 'JavaScript', 'PHP'],
       github: '#',
       demo: 'https://hanumantauto.in/',
